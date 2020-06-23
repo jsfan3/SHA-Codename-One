@@ -1,5 +1,9 @@
 package net.informaticalibera.obfuscatestring;
 
+import com.codename1.io.Util;
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * SHA-256 for Codename One. Original code:
  * https://github.com/johanstenberg92/SHA-256/blob/master/src/org/johanstenberg/sha256/SHA256Digest.java
@@ -242,5 +246,25 @@ final public class SHA256Digest {
      */
     public static String sha256hash(String s) {
         return bytesToHex(digest(s.getBytes()));
+    }
+    
+    /**
+     * Returns the SHA-256 hash of a byte[] array
+     *
+     * @param data
+     * @return
+     */
+    public static String sha256hash(byte[] data) {
+        return bytesToHex(digest(data));
+    }
+    
+    /**
+     * Returns the SHA-256 hash of an InputStream
+     *
+     * @param data
+     * @return
+     */
+    public static String sha256hash(InputStream data) throws IOException {
+        return bytesToHex(digest(Util.readInputStream(data)));
     }
 }
